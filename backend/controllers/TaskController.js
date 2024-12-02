@@ -32,10 +32,11 @@ exports.updateTask = async (req, res) => {
     const { title, description, deadline, priority } = req.body;
     const taskId = req.params.id;
     const updatedTask = await Task.findByIdAndUpdate(
-      { _id: taskId },
-      { $set: { title, description, deadline, priority } }
+       taskId,
+      { $set: { title, description, deadline, priority } },
+      {new:true}
     );
-    return res.status(200).json(updatedTask);
+    return res.status(200).json({updatedTask});
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something went wrong" });
@@ -43,7 +44,7 @@ exports.updateTask = async (req, res) => {
 };
 
 
-exports.deleteTask = async () => {
+exports.deleteTask = async (req, res) => {
 try{
 const taskId = req.params.id;
 const deletedTask = await Task.findByIdAndDelete(taskId);

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', TaskController.getAllTasks)
 router.post('/', TaskController.addTask)
-router.put('/:taskId', TaskController.updateTask)
-router.delete('/:taskId', TaskController.deleteTask)
+router.put('/:id', TaskController.updateTask)
+router.delete('/:id', TaskController.deleteTask)
 
 module.exports = router;
